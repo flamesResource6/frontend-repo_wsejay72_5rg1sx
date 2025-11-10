@@ -1,15 +1,31 @@
+import { useState } from 'react'
 import Spline from '@splinetool/react-spline'
 import { motion } from 'framer-motion'
 
 export default function Hero() {
+  const [splineOk, setSplineOk] = useState(true)
+
   return (
     <section className="relative min-h-[92vh] w-full overflow-hidden bg-[#0F172A] text-white">
+      {/* 3D background layer */}
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/FduaNp3csZktbOi3/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        {splineOk ? (
+          <Spline
+            scene="https://prod.spline.design/FduaNp3csZktbOi3/scene.splinecode"
+            style={{ width: '100%', height: '100%' }}
+            onLoad={() => setSplineOk(true)}
+            onError={() => setSplineOk(false)}
+          />
+        ) : (
+          // Graceful fallback if Spline is blocked or fails to load
+          <div className="h-full w-full bg-[radial-gradient(1200px_800px_at_70%_20%,#2563EB22,transparent)]" />
+        )}
       </div>
 
+      {/* soft overlay tint */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2563EB33] via-[#00B4FF22] to-transparent" />
 
+      {/* content */}
       <div className="relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-36 pb-24">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="max-w-3xl">
@@ -31,6 +47,13 @@ export default function Hero() {
                 Chat on WhatsApp
               </a>
             </div>
+
+            {/* If 3D failed, hint to the user */}
+            {!splineOk && (
+              <p className="mt-6 text-xs text-slate-400">
+                Note: 3D background is using Spline and may be blocked by network or extensions. Showing a static gradient instead.
+              </p>
+            )}
           </motion.div>
         </div>
       </div>
