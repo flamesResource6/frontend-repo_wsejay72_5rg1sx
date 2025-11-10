@@ -3,16 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flames App</title>
-    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>GrowCaptain – We Navigate. You Scale.</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Fonts: Space Grotesk (headings) + Poppins (body) + Inter for accents -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Geist for optional accents -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.0.0/dist/fonts/geist-sans/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.0.0/dist/fonts/geist-mono/style.css">
   </head>
-  <body>
+  <body class="bg-[#0F172A]">
     <div id="root"></div>
+
+    <!-- Crisp Chat Widget (replace WEBSITE_ID with your ID) -->
+    <script>
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = "YOUR_CRISP_WEBSITE_ID";
+      (function () {
+        const d = document; const s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js"; s.async = 1; d.getElementsByTagName("head")[0].appendChild(s);
+      })();
+    </script>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
